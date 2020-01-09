@@ -23,7 +23,7 @@ public class Driver {
     @JoinColumn(name = "driver_detail_id")
     private DriverDetail driverDetail;
 
-    @OneToMany(mappedBy = "driver",
+    @OneToMany(mappedBy = "driver", fetch = FetchType.LAZY,
             cascade = {
                     CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
             })

@@ -7,9 +7,7 @@ import sdacademy.demo.entity.BusLine;
 import sdacademy.demo.entity.Driver;
 import sdacademy.demo.entity.DriverDetail;
 
-import java.util.SortedMap;
-
-public class EagerLazyDemo {
+public class LazyLoadingExceptionDemo {
 
     public static void main(String[] args) {
         //tworzenie fabryki
@@ -32,12 +30,14 @@ public class EagerLazyDemo {
 
             System.out.println("Pobrany kierowca: " + driver);
 
-            System.out.println("Pobrane kursy TRAM/BUS: " + driver.getBusLines());
-
             //zakomituj transakcję
             session.getTransaction().commit();
 
+            //zamknij sesję
+            session.close();
 
+            //po zamkniętej sesji wywołanie o obiekt
+            System.out.println("Pobrane kursy TRAM/BUS: " + driver.getBusLines());
 
         } finally {
             //posprzątaj po otwartej sesji
